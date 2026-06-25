@@ -1,15 +1,15 @@
-# AsLindon ClashX
+# AsLindon Homebrew Casks
 
 ## How do I install these formulae?
 
-`brew install aslindon/clashx/<formula>`
+`brew install aslindon/homebrew-casks/<formula>`
 
-Or `brew tap aslindon/clashx` and then `brew install <formula>`.
+Or `brew tap aslindon/casks` and then `brew install <formula>`.
 
 Or, in a `brew bundle` `Brewfile`:
 
 ```ruby
-tap "aslindon/clashx"
+tap "aslindon/homebrew-casks"
 brew "<formula>"
 ```
 
