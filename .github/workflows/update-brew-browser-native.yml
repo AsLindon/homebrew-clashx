@@ -44,15 +44,22 @@ jobs:
 
           ruby <<RUBY
           path = "$CASK"
+          release_version = "$release_version"
+          native_version = "$native_version"
+          arm_sha = "$arm_sha"
+          intel_sha = "$intel_sha"
+          
           text = File.read(path)
-
+          
           text.sub!(/version "[^"]+"/, %(version "#{release_version},#{native_version}"))
-
-          text.sub!(
-            /sha256 arm:\s+"[^"]+",\n\s+intel:\s+(?:"[^"]+"|:no_check)/,
+          
+          unless text.sub!(
+            /sha256\s+arm:\s*(?:"[^"]+"|:no_check),\s*\n\s*intel:\s*(?:"[^"]+"|:no_check)/,
             %(sha256 arm:   "#{arm_sha}",\n       intel: "#{intel_sha}")
           )
-
+            abort "Failed to update sha256 block"
+          end
+          
           File.write(path, text)
           RUBY
 
